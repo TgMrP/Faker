@@ -82,6 +82,9 @@ class Image extends Base
             // use cURL
             $fp = fopen($filepath, 'w');
             $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
+            ));
             curl_setopt($ch, CURLOPT_FILE, $fp);
             $success = curl_exec($ch) && curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200;
             fclose($fp);
